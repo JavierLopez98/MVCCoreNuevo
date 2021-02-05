@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MvcCore.Controllers
@@ -11,6 +12,22 @@ namespace MvcCore.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+        public IActionResult LogIn()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult LogIn(String username)
+        {
+            HttpContext.Session.SetString("username", username);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult CloseSession()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
         }
     }
 }
