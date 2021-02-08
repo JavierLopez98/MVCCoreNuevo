@@ -1,0 +1,60 @@
+﻿@model MvcCoreNuevo.Models.VistaDept
+
+@{
+    ViewData["Title"] = "PaginarVistaDeptRegistro";
+}
+
+<h1>Paginar Vista DeptRegistro</h1>
+<h2 style="color:blue">Registro @ViewData["Posicion"] de @ViewData["Ultimo"]</h2>
+<div>
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <a asp-action="PaginarVistaDeptRegistro"
+               asp-route-posicion="1">Primero</a>
+        </li>
+        <li class="list-inline-item">
+            <a asp-action="PaginarVistaDeptRegistro"
+               asp-route-posicion="@ViewData["anterior"]">Anterior</a>
+        </li>
+        <li class="list-inline-item">
+            <a asp-action="PaginarVistaDeptRegistro"
+               asp-route-posicion="@ViewData["siguiente"]">Siguiente</a>
+        </li>
+        <li class="list-inline-item">
+            <a asp-action="PaginarVistaDeptRegistro"
+               asp-route-posicion="@ViewData["ultimo"]">Último</a>
+        </li>
+    </ul>
+</div>
+
+<div>
+    <h4>VistaDept</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.posicion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.posicion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Loc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Loc)
+        </dd>
+    </dl>
+</div>
+

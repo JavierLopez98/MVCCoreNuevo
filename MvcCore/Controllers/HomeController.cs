@@ -4,11 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MvcCoreNuevo.Interfaces;
+using MvcCoreNuevo.Models;
+using MvcCoreNuevo.Repositories;
 
 namespace MvcCore.Controllers
 {
     public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
