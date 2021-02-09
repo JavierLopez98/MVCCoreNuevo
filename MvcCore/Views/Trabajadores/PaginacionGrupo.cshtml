@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MvcCoreNuevo.Models.Trabajador>
+
+@{
+    ViewData["Title"] = "PaginacionGrupo";
+    int paginas = (int)ViewData["paginas"];
+    int salto = (int)ViewData["salto"];
+    int numeroPaginas =(int) Math.Ceiling((double)paginas / salto);
+
+}
+
+<h1>PaginacionGrupo</h1>
+
+<form method="get">
+    <label>Numero de registros</label>
+    <input type="number" name="salto" class="form-control" value="@ViewData["salto"]"/>
+    <label>Salario:</label>
+    <input type="number" name="salario" class="form-control" value="@ViewData["salario"]" />
+    <button type="submit" class="btn btn-success">Aceptar</button>
+</form>
+
+@for(int i = 1; i <= numeroPaginas; i++)
+{
+   <a asp-action="PaginacionGrupo"
+       asp-route-pagina="@i"
+      asp-route-salto="@ViewData["salto"]"
+      asp-route-salario="@ViewData["salario"]">@i</a>
+    
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oficio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Oficio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salario)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

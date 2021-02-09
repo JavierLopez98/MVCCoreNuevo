@@ -1,32 +1,36 @@
-﻿@model IEnumerable<MvcCoreNuevo.Models.VistaDept>
+﻿@model IEnumerable<MvcCoreNuevo.Models.Departamento>
 
 @{
-    ViewData["Title"] = "PaginarVistaDeptGrupo";
-    int paginas = (int) ViewData["Paginas"];
+    ViewData["Title"] = "PaginacionGruposProcedure";
+    int numeroregistros = (int)ViewData["registros"];
+    int numeropagina = 1;
 }
 
-<h1>PaginarVistaDeptGrupo</h1>
+<h1>PaginacionGruposProcedure</h1>
 
-@for(int i = 1; i < paginas; i++)
-{
-    <a asp-action="PaginarVistaDeptGrupo"
-       asp-route-pagina="@i">@i</a>
-}
-@*@Html.Raw(ViewData["Paginas"])*@
+<ul class="list-group list-group-horizontal">
+    @for (int i = 0; i < numeroregistros; i += 2)
+    {
+        <li class="list-group-item">
+            <a asp-action="PaginacionGruposProcedure"
+               asp-route-posicion="@i"
+               >@numeropagina</a>
+        </li>
+        numeropagina++;
+    }
+    
+</ul>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.posicion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.numero)
+                @Html.DisplayNameFor(model => model.Numero)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Loc)
+                @Html.DisplayNameFor(model => model.Localidad)
             </th>
             <th></th>
         </tr>
@@ -35,16 +39,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.posicion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.numero)
+                @Html.DisplayFor(modelItem => item.Numero)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Loc)
+                @Html.DisplayFor(modelItem => item.Localidad)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
